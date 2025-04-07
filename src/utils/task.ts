@@ -15,7 +15,7 @@ export function buildTask(
   taskListName: string
 ) {
   try {
-    if (!title || !description) {
+    if (!title || !description || !taskListName) {
       return;
     }
 
