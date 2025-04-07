@@ -8,6 +8,7 @@ import {
   updateTaskStatus,
 } from "../utils/task";
 import { TaskExpanded } from "./taskExpanded";
+import { AddTaskForm } from "./addTaskForm";
 
 interface TaskListProps {
   taskListName: any;
@@ -16,8 +17,6 @@ interface TaskListProps {
 
 const TaskList: React.FC<TaskListProps> = ({ taskListName, title }) => {
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [titleInput, setTitleInput] = useState<string>("");
-  const [description, setDescription] = useState<string>("");
 
   useEffect(() => {
     const storedTasks = getTasks();
@@ -27,13 +26,8 @@ const TaskList: React.FC<TaskListProps> = ({ taskListName, title }) => {
     setTasks(filteredTasks);
   }, [taskListName]);
 
-  useEffect(() => {
-    setTitleInput("");
-    setDescription("");
-  }, [tasks, taskListName]);
-
-  function addTask() {
-    const task = buildTask(titleInput, description, taskListName);
+  function addTask(title: string, description: string) {
+    const task = buildTask(title, description, taskListName);
     if (!task) return;
 
     const allTasks = getTasks();
@@ -61,10 +55,6 @@ const TaskList: React.FC<TaskListProps> = ({ taskListName, title }) => {
     return tasks.length;
   }, [tasks]);
 
-  const handleChange = (e: any, setter: any) => {
-    setter(e.target.value);
-  };
-
   return (
     <div className="addTaskOuterContainer">
       <div className="addTaskTitleContainer">
@@ -72,30 +62,9 @@ const TaskList: React.FC<TaskListProps> = ({ taskListName, title }) => {
         <p>Total tasks: {taskCount}</p>
       </div>
 
-      <div className="addTaskFormContainer">
-        <label htmlFor="title">Title</label>
-        <input
-          id="title"
-          name="title"
-          type="text"
-          value={titleInput}
-          onChange={(e) => handleChange(e, setTitleInput)}
-        />
+      <AddTaskForm addTask={addTask} />
 
-        <label htmlFor="description">Description</label>
-        <textarea
-          id="description"
-          name="description"
-          value={description}
-          onChange={(e) => handleChange(e, setDescription)}
-        />
-
-        <button className="outlineButton" onClick={addTask}>
-          Add Task
-        </button>
-      </div>
-
-      <ul style={{ listStyleType: "none", padding: 0 }}>
+      <ul className="addTaskInnerContainer">
         {tasks.map((task: Task, idx) => (
           <TaskExpanded
             task={task}

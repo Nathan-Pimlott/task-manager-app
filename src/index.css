@@ -49,6 +49,29 @@ button {
   cursor: pointer;
 }
 
+input,
+textarea {
+  padding: 8px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+}
+
+label {
+  font-size: 0.8rem;
+}
+
+p {
+  margin: 10px 0;
+}
+
+select {
+  margin-top: 10px;
+  padding: 5px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -60,6 +83,10 @@ button {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.marginTop {
+  margin-top: 10px;
 }
 
 .containedButton {
@@ -135,7 +162,8 @@ button {
   margin-bottom: 5px;
 }
 
-.taskDescription {
+.taskDescription,
+.taskStatus {
   font-size: 0.9em;
   color: #555;
 }
@@ -146,7 +174,7 @@ button {
   padding: 5px;
   width: 70px;
   color: black;
-  background-color: white;
+  background-color: transparent;
 }
 
 .addTaskOuterContainer {
@@ -161,6 +189,11 @@ button {
   color: black;
 }
 
+.addTaskInnerContainer {
+  list-style-type: none;
+  padding: 0;
+}
+
 .addTaskTitleContainer {
   margin-bottom: 20px;
   text-align: center;
@@ -173,9 +206,13 @@ button {
   gap: 10px;
 }
 
-input,
-textarea {
-  padding: 8px;
-  border-radius: 3px;
-  border: 1px solid #ccc;
+.expandedTaskContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  border: 1px solid #eee;
 }

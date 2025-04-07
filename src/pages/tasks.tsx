@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { Task, TaskType } from "../types";
 import { TaskCompact } from "../components/taskCompact";
+import { getTasks } from "../utils/task";
 
 interface IProps {
   variant: TaskType;
@@ -10,14 +11,13 @@ export const Tasks = ({ variant }: IProps) => {
   const [tasks, setTasks] = useState<Task[]>([]);
 
   useEffect(() => {
-    const storedTasks = localStorage.getItem("tasks");
-    if (storedTasks) {
-      const parsedTasks = JSON.parse(storedTasks);
-      const filteredTasks = parsedTasks.filter(
-        (task: Task) => task.status === (variant === "done" ? "Done" : "To Do")
-      );
-      setTasks(filteredTasks);
-    }
+    const allTasks = getTasks();
+    console.log({ allTasks });
+
+    const filteredTasks = allTasks.filter(
+      (task: Task) => task.status === (variant === "done" ? "Done" : "To Do")
+    );
+    setTasks(filteredTasks);
   }, [variant]);
 
   const taskCount = useMemo(() => {
