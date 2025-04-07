@@ -45,23 +45,9 @@ h2 {
 }
 
 button {
-  /* border-radius: 8px;
-  border: 1px solid transparent;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a; */
   padding: 0.6em 1.2em;
   cursor: pointer;
-  /* transition: border-color 0.25s; */
 }
-/* button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-} */
 
 @media (prefers-color-scheme: light) {
   :root {
@@ -152,4 +138,44 @@ button:focus-visible {
 .taskDescription {
   font-size: 0.9em;
   color: #555;
+}
+
+.outlineButton {
+  border: 1px solid;
+  border-color: black;
+  padding: 5px;
+  width: 70px;
+  color: black;
+  background-color: white;
+}
+
+.addTaskOuterContainer {
+  background-color: darkgray;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 5px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  color: black;
+}
+
+.addTaskTitleContainer {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.addTaskFormContainer {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input,
+textarea {
+  padding: 8px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
 }

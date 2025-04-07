@@ -12,8 +12,8 @@ const App: React.FC = () => {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/to-do" element={<Tasks complete={false} />} />
-        <Route path="/done" element={<Tasks complete={true} />} />
+        <Route path="/to-do" element={<Tasks variant="todo" />} />
+        <Route path="/done" element={<Tasks variant="done" />} />
       </Routes>
     </BrowserRouter>
   );

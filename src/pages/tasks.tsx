@@ -1,13 +1,12 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect, useMemo } from "react";
-import { Task } from "../types";
+import { Task, TaskType } from "../types";
 import { TaskCompact } from "../components/taskCompact";
 
 interface IProps {
-  complete: boolean;
+  variant: TaskType;
 }
 
-export const Tasks = ({ complete }: IProps) => {
+export const Tasks = ({ variant }: IProps) => {
   const [tasks, setTasks] = useState<Task[]>([]);
 
   useEffect(() => {
@@ -15,22 +14,22 @@ export const Tasks = ({ complete }: IProps) => {
     if (storedTasks) {
       const parsedTasks = JSON.parse(storedTasks);
       const filteredTasks = parsedTasks.filter(
-        (task: Task) => task.status === (complete ? "Done" : "To Do")
+        (task: Task) => task.status === (variant === "done" ? "Done" : "To Do")
       );
       setTasks(filteredTasks);
     }
-  }, [complete]);
+  }, [variant]);
 
   const taskCount = useMemo(() => {
     return tasks.length;
   }, [tasks]);
 
-  const title = complete ? "Done Tasks" : "To Do Tasks";
+  const title = variant === "done" ? "Done Tasks" : "To Do Tasks";
 
   return (
     <div
       className={`taskListOuterContainer ${
-        complete ? "doneContainer" : "todoContainer"
+        variant === "done" ? "doneContainer" : "todoContainer"
       }`}
     >
       <div className="taskListHeaderContainer">

@@ -13,3 +13,5 @@ export interface ActionProps {
   color?: string;
   children: React.ReactNode;
 }
+
+export type TaskType = "todo" | "done";
